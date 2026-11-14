@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regex para CPF, CNPJ, CEP, celular, email e data | Dominando o Regex</title>
+<meta name="description" content="Regex prontos e testados para CPF, CNPJ, CEP, celular brasileiro, email, data dd/mm/aaaa, placa Mercosul e links, com testador online.">
+<meta name="keywords" content="regex cpf, regex cnpj, regex cep, regex celular, regex telefone, regex email, regex data, regex placa mercosul">
+<link rel="canonical" href="https://jose1777.github.io/Dominando-o-Regex/regex-prontos.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Dominando o Regex">
+<meta property="og:title" content="Regex para CPF, CNPJ, CEP, celular, email e data | Dominando o Regex">
+<meta property="og:description" content="Regex prontos e testados para CPF, CNPJ, CEP, celular brasileiro, email, data dd/mm/aaaa, placa Mercosul e links, com testador online.">
+<meta property="og:url" content="https://jose1777.github.io/Dominando-o-Regex/regex-prontos.html">
+<meta property="og:image" content="https://jose1777.github.io/Dominando-o-Regex/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Regex prontos para os formatos brasileiros", "description": "Regex prontos e testados para CPF, CNPJ, CEP, celular brasileiro, email, data dd/mm/aaaa, placa Mercosul e links, com testador online.", "inLanguage": "pt-BR", "url": "https://jose1777.github.io/Dominando-o-Regex/regex-prontos.html", "author": {"@type": "Person", "name": "José", "url": "https://github.com/Jose1777"}, "keywords": "regex cpf, regex cnpj, regex cep, regex celular, regex telefone, regex email, regex data, regex placa mercosul"}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="brand-mark">.*</span> Dominando o Regex</a>
+    <nav><a href="index.html">Guia completo</a><a href="regex-prontos.html" aria-current="page">Regex prontos</a><a href="regex-discord-automod.html">AutoMod do Discord</a><a href="sabores-de-regex.html">Python, JS e Rust</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Regex prontos para os formatos brasileiros</h1>
+    <p class="lead">Padrões para copiar e usar, com explicação e um testador para conferir no seu texto antes de colocar no código.</p>
+  </section>
+<nav class="toc" aria-label="Sumário"><a href="#cpf">CPF</a><a href="#cnpj">CNPJ</a><a href="#cep">CEP</a><a href="#celular">celular brasileiro</a><a href="#email">email</a><a href="#data">data dd/mm/aaaa</a><a href="#url">link HTTP e HTTPS</a><a href="#placa">placa de carro</a><a href="#hashtag">hashtag</a></nav>
+<section class="card" id="cpf">
+<h2>Regex para CPF</h2>
+<p>Aceita CPF com ou sem pontuação, como 123.456.789-09 e 12345678909.</p>
+<pre><code>\d{3}\.?\d{3}\.?\d{3}-?\d{2}</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">CPF com pontos 123.456.789-09
+CPF só números 12345678909
+Incompleto 123.456</textarea></label>
+  <div class="t-out" aria-live="polite"></div><p class="note">Confere só o formato. Para saber se o CPF é válido é preciso calcular os dígitos verificadores no código.</p>
+</div>
+</section>
+<section class="card" id="cnpj">
+<h2>Regex para CNPJ</h2>
+<p>Aceita CNPJ formatado como 12.345.678/0001-95 ou só com números.</p>
+<pre><code>\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Formatado 12.345.678/0001-95
+Só números 12345678000195</textarea></label>
+  <div class="t-out" aria-live="polite"></div><p class="note">Assim como no CPF, a validação real depende dos dígitos verificadores.</p>
+</div>
+</section>
+<section class="card" id="cep">
+<h2>Regex para CEP</h2>
+<p>Aceita CEP com ou sem hífen, como 50740-560 e 50740560.</p>
+<pre><code>\b\d{5}-?\d{3}\b</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\b\d{5}-?\d{3}\b" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Com hífen 50740-560
+Sem hífen 50740560
+Curto 5074</textarea></label>
+  <div class="t-out" aria-live="polite"></div>
+</div>
+</section>
+<section class="card" id="celular">
+<h2>Regex para celular brasileiro</h2>
+<p>Aceita celular com DDD em vários formatos, como (81) 99999-1234, 81 99999-1234 e 81999991234.</p>
+<pre><code>\(?\d{2}\)?\s?9\d{4}-?\d{4}</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\(?\d{2}\)?\s?9\d{4}-?\d{4}" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">(81) 99999-1234
+81999991234
+Fixo 3333-4444</textarea></label>
+  <div class="t-out" aria-live="polite"></div><p class="note">O 9 depois do DDD separa celular de telefone fixo.</p>
+</div>
+</section>
+<section class="card" id="email">
+<h2>Regex para email</h2>
+<p>Encontra endereços de email comuns, como nome.sobrenome@empresa.com.br.</p>
+<pre><code>[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Contato jose@exemplo.com
+Errado a@bcom</textarea></label>
+  <div class="t-out" aria-live="polite"></div><p class="note">Nenhum regex cobre 100% dos emails válidos. Para cadastro, o jeito seguro é enviar um email de confirmação.</p>
+</div>
+</section>
+<section class="card" id="data">
+<h2>Regex para data dd/mm/aaaa</h2>
+<p>Encontra datas no formato brasileiro e já rejeita dia 32 e mês 13.</p>
+<pre><code>\b(0[1-9]|[12]\d|3[01])/(0[1-9]|1[0-2])/\d{4}\b</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\b(0[1-9]|[12]\d|3[01])/(0[1-9]|1[0-2])/\d{4}\b" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Válida 14/11/2026
+Dia inválido 32/01/2026
+Mês inválido 10/13/2026</textarea></label>
+  <div class="t-out" aria-live="polite"></div><p class="note">Ainda aceita 31/02. Para checar o calendário de verdade, converta a data no código.</p>
+</div>
+</section>
+<section class="card" id="url">
+<h2>Regex para link HTTP e HTTPS</h2>
+<p>Encontra links que começam com http ou https.</p>
+<pre><code>\bhttps?://\S+</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\bhttps?://\S+" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Veja https://exemplo.com/pagina
+Sem protocolo exemplo.com</textarea></label>
+  <div class="t-out" aria-live="polite"></div>
+</div>
+</section>
+<section class="card" id="placa">
+<h2>Regex para placa de carro</h2>
+<p>Aceita placa no padrão antigo (ABC-1234) e no padrão Mercosul (ABC1D23).</p>
+<pre><code>\b[A-Z]{3}-?\d[A-Z0-9]\d{2}\b</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\b[A-Z]{3}-?\d[A-Z0-9]\d{2}\b" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Antiga ABC-1234
+Mercosul ABC1D23
+Errada AB-12345</textarea></label>
+  <div class="t-out" aria-live="polite"></div>
+</div>
+</section>
+<section class="card" id="hashtag">
+<h2>Regex para hashtag</h2>
+<p>Encontra hashtags em textos de redes sociais.</p>
+<pre><code>#\w+</code></pre>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="#\w+" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Estudando #regex e #python hoje</textarea></label>
+  <div class="t-out" aria-live="polite"></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>Guia aberto e mantido por <a href="https://github.com/Jose1777">José</a>. Todos os exemplos são conferidos por testes automáticos.</p>
+    <p><a href="https://github.com/Jose1777/Dominando-o-Regex">Ver no GitHub</a> · <a href="https://github.com/Jose1777/Dominando-o-Regex/issues">Sugerir correção</a></p>
+  </div>
+</footer>
+<script src="tester.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regex no AutoMod do Discord | Padrões prontos e o que não funciona</title>
+<meta name="description" content="Como usar regex no AutoMod do Discord, o que o regex do Rust não aceita e padrões prontos para bloquear convites, links, spam e menções em massa.">
+<meta name="keywords" content="regex discord, automod discord regex, bloquear convite discord, regex rust">
+<link rel="canonical" href="https://jose1777.github.io/Dominando-o-Regex/regex-discord-automod.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Dominando o Regex">
+<meta property="og:title" content="Regex no AutoMod do Discord | Padrões prontos e o que não funciona">
+<meta property="og:description" content="Como usar regex no AutoMod do Discord, o que o regex do Rust não aceita e padrões prontos para bloquear convites, links, spam e menções em massa.">
+<meta property="og:url" content="https://jose1777.github.io/Dominando-o-Regex/regex-discord-automod.html">
+<meta property="og:image" content="https://jose1777.github.io/Dominando-o-Regex/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Regex no AutoMod do Discord", "description": "Como usar regex no AutoMod do Discord, o que o regex do Rust não aceita e padrões prontos para bloquear convites, links, spam e menções em massa.", "inLanguage": "pt-BR", "url": "https://jose1777.github.io/Dominando-o-Regex/regex-discord-automod.html", "author": {"@type": "Person", "name": "José", "url": "https://github.com/Jose1777"}, "keywords": "regex discord, automod discord regex, bloquear convite discord, regex rust"}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="brand-mark">.*</span> Dominando o Regex</a>
+    <nav><a href="index.html">Guia completo</a><a href="regex-prontos.html">Regex prontos</a><a href="regex-discord-automod.html" aria-current="page">AutoMod do Discord</a><a href="sabores-de-regex.html">Python, JS e Rust</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Regex no AutoMod do Discord</h1>
+    <p class="lead">Padrões prontos para moderar servidores e o que evitar, porque o AutoMod não aceita tudo que funciona em outras linguagens.</p>
+  </section>
+<section class="card">
+<h2>Como o AutoMod lê regex</h2>
+<p>O AutoMod do Discord usa o regex do Rust. Ele é rápido e seguro, mas não aceita alguns recursos comuns em outras linguagens. Um padrão copiado de um tutorial de JavaScript pode dar erro na hora de salvar a regra.</p>
+<ul>
+<li>Não aceita lookahead <code>(?=...)</code> nem lookbehind <code>(?&lt;=...)</code></li>
+<li>Não aceita referência a grupo, como <code>\1</code></li>
+<li>Para ignorar maiúsculas, comece o padrão com <code>(?i)</code></li>
+</ul>
+<p>Para configurar, vá em Configurações do servidor, AutoMod, crie uma regra de palavras personalizadas e cole o padrão no campo de regex.</p>
+</section>
+<section class="card">
+<h2>Regex prontos para o AutoMod</h2>
+<div class="tbl"><table><thead><tr><th>Para quê</th><th>Padrão</th><th>No AutoMod</th></tr></thead><tbody><tr><td>Convite do Discord</td><td><code>(?i)\bdiscord(?:app)?\.com/invite/[A-Za-z0-9-]+\b</code></td><td>Funciona</td></tr><tr><td>Link encurtado discord.gg</td><td><code>(?i)discord\.gg/[A-Za-z0-9-]+</code></td><td>Funciona</td></tr><tr><td>Link qualquer</td><td><code>\bhttps?://\S+</code></td><td>Funciona</td></tr><tr><td>Palavrão com variações</td><td><code>(?i)\bl[i1]x[o0]\b</code></td><td>Funciona</td></tr><tr><td>Letras repetidas demais</td><td><code>(?i)(?:a{5,}|e{5,}|i{5,}|o{5,}|u{5,}|k{5,}|s{5,})</code></td><td>Funciona</td></tr><tr><td>Menções em massa</td><td><code>(?:&lt;@!?\d+&gt;[\s\S]*){5,}</code></td><td>Funciona</td></tr><tr><td>Qualquer caractere repetido</td><td><code>(.)\1{4,}</code></td><td>Não funciona, usa referência a grupo</td></tr></tbody></table></div>
+<p class="tip">Os padrões foram testados na biblioteca de regex do Rust. O Discord pode usar outra versão, então salve a regra e teste num canal antes de ativar a punição.</p>
+</section>
+<section class="card">
+<h2>Teste antes de salvar</h2>
+<p>Este testador usa o regex do JavaScript, que aceita mais coisas que o AutoMod. Ele serve para ver se o padrão pega as mensagens certas. Para conferir a sintaxe do Rust, use o <a href="https://rustexp.lpil.uk/">Rustexp</a> ou escolha Rust no <a href="https://regex101.com/">regex101</a>.</p>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="(?i)discord\.gg/[A-Za-z0-9-]+" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">entra no meu servidor discord.gg/abc123
+mensagem normal</textarea></label>
+  <div class="t-out" aria-live="polite"></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>Guia aberto e mantido por <a href="https://github.com/Jose1777">José</a>. Todos os exemplos são conferidos por testes automáticos.</p>
+    <p><a href="https://github.com/Jose1777/Dominando-o-Regex">Ver no GitHub</a> · <a href="https://github.com/Jose1777/Dominando-o-Regex/issues">Sugerir correção</a></p>
+  </div>
+</footer>
+<script src="tester.js"></script>
+</body>
+</html>

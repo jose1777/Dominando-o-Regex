@@ -1,0 +1,90 @@
+:root {
+  --bg: #f6f8fa;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #59636e;
+  --line: #d1d9e0;
+  --accent: #2c5364;
+  --accent-2: #203a43;
+  --mark: #fff1a8;
+  --code-bg: #eef2f5;
+  --ok: #1a7f37;
+  --bad: #cf222e;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --card: #151b23;
+    --text: #e6edf3;
+    --muted: #9198a1;
+    --line: #2f3a46;
+    --accent: #5fa8c4;
+    --accent-2: #8cc4d9;
+    --mark: #6b5a00;
+    --code-bg: #1f2833;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+a { color: var(--accent); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+.top {
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  position: sticky; top: 0; z-index: 10;
+}
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; flex-wrap: wrap; }
+.brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 18px; }
+.brand-mark { font-family: ui-monospace, "Fira Code", monospace; background: rgba(255,255,255,.15); padding: 2px 6px; border-radius: 6px; margin-right: 6px; }
+.top nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.top nav a { color: #d9e7ee; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 14px; }
+.top nav a:hover, .top nav a[aria-current="page"] { background: rgba(255,255,255,.15); color: #fff; }
+
+.hero { padding: 40px 0 16px; }
+.hero h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin: 0 0 12px; }
+.lead { font-size: 18px; color: var(--muted); margin: 0; max-width: 720px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin: 20px 0; }
+.card h2 { margin-top: 0; font-size: 22px; }
+.card h3 { font-size: 17px; margin-bottom: 4px; }
+
+.toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.toc a { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; text-decoration: none; font-size: 14px; }
+.toc a:hover { border-color: var(--accent); }
+
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .03em; }
+
+code, pre, input.t-pattern, textarea.t-text { font-family: ui-monospace, "Fira Code", SFMono-Regular, Menlo, monospace; }
+code { background: var(--code-bg); padding: 2px 6px; border-radius: 6px; font-size: 14px; white-space: nowrap; }
+pre { background: var(--code-bg); padding: 14px 16px; border-radius: 8px; overflow-x: auto; }
+pre code { background: none; padding: 0; white-space: pre; }
+
+.tip, .note { color: var(--muted); font-size: 14px; border-left: 3px solid var(--accent); padding-left: 12px; margin-top: 16px; }
+
+.tester { display: grid; gap: 10px; margin-top: 12px; }
+.tester label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.tester input, .tester textarea {
+  width: 100%; padding: 10px 12px; font-size: 15px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--text);
+}
+.tester input:focus, .tester textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.t-out { background: var(--bg); border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 15px; min-height: 44px; }
+.t-out mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+.t-status { display: block; font-family: inherit; font-size: 13px; margin-top: 6px; color: var(--muted); }
+.t-status.ok { color: var(--ok); }
+.t-status.bad { color: var(--bad); }
+
+.links { padding-left: 18px; }
+.links li { margin: 6px 0; }
+
+.foot { border-top: 1px solid var(--line); margin-top: 40px; padding: 24px 0; color: var(--muted); font-size: 14px; }

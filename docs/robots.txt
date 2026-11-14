@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jose1777.github.io/Dominando-o-Regex/sitemap.xml

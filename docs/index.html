@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regex em português | Guia de expressões regulares com exemplos</title>
+<meta name="description" content="Guia de regex em português com tabela de símbolos, exemplos do que casa e não casa, testador online e regex prontos para CPF, CEP, celular e email.">
+<meta name="keywords" content="regex, expressões regulares, regex em português, tutorial regex, cheatsheet regex">
+<link rel="canonical" href="https://jose1777.github.io/Dominando-o-Regex/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Dominando o Regex">
+<meta property="og:title" content="Regex em português | Guia de expressões regulares com exemplos">
+<meta property="og:description" content="Guia de regex em português com tabela de símbolos, exemplos do que casa e não casa, testador online e regex prontos para CPF, CEP, celular e email.">
+<meta property="og:url" content="https://jose1777.github.io/Dominando-o-Regex/">
+<meta property="og:image" content="https://jose1777.github.io/Dominando-o-Regex/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Regex em português, o guia prático", "description": "Guia de regex em português com tabela de símbolos, exemplos do que casa e não casa, testador online e regex prontos para CPF, CEP, celular e email.", "inLanguage": "pt-BR", "url": "https://jose1777.github.io/Dominando-o-Regex/", "author": {"@type": "Person", "name": "José", "url": "https://github.com/Jose1777"}, "keywords": "regex, expressões regulares, regex em português, tutorial regex, cheatsheet regex"}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="brand-mark">.*</span> Dominando o Regex</a>
+    <nav><a href="index.html" aria-current="page">Guia completo</a><a href="regex-prontos.html">Regex prontos</a><a href="regex-discord-automod.html">AutoMod do Discord</a><a href="sabores-de-regex.html">Python, JS e Rust</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Regex em português, o guia prático</h1>
+    <p class="lead">Cada símbolo de expressão regular com o que ele faz, um exemplo e o que casa e não casa. Tem testador ao vivo e todos os exemplos são conferidos por testes automáticos.</p>
+  </section>
+<section class="card">
+<h2>Teste qualquer regex aqui</h2>
+<p>Digite um padrão e um texto. Os trechos que casam ficam destacados. O testador usa o regex do JavaScript, e padrões começando com <code>(?i)</code> viram a flag de ignorar maiúsculas.</p>
+<div class="tester">
+  <label>Padrão<input class="t-pattern" value="\b\d{5}-?\d{3}\b" spellcheck="false"></label>
+  <label>Texto de teste<textarea class="t-text" rows="3" spellcheck="false">Meu CEP é 50740-560 e o antigo era 50670901</textarea></label>
+  <div class="t-out" aria-live="polite"></div>
+</div>
+</section>
+<nav class="toc" aria-label="Sumário"><a href="#classes">Caracteres coringa e classes</a><a href="#ancoras">Âncoras</a><a href="#conjuntos">Conjuntos e alternância</a><a href="#quantificadores">Quantificadores</a><a href="#grupos">Grupos</a><a href="#lookahead">Lookahead</a><a href="#escape">Escape</a></nav>
+<section class="card" id="classes"><h2>Caracteres coringa e classes</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>.</code></td><td>Qualquer caractere, exceto quebra de linha</td><td><code>a.b</code></td><td><code>acb</code> <code>a1b</code> <code>a b</code></td><td><code>ab</code></td></tr><tr><td><code>\d</code></td><td>Um dígito de 0 a 9</td><td><code>\d{3}</code></td><td><code>123</code> <code>2025</code></td><td><code>A</code> <code>#</code></td></tr><tr><td><code>\w</code></td><td>Letra, dígito ou sublinhado. Acentos dependem da linguagem</td><td><code>\w+</code></td><td><code>alice</code> <code>_bot</code> <code>user123</code></td><td><code>&amp;</code> <code>!?</code></td></tr><tr><td><code>\s</code></td><td>Espaço, tabulação ou quebra de linha</td><td><code>Hello\sWorld</code></td><td><code>Hello World</code></td><td><code>HelloWorld</code></td></tr></tbody></table></div><p class="tip">As versões maiúsculas fazem o contrário. \D é qualquer coisa que não seja dígito, \W qualquer coisa fora de \w e \S qualquer coisa que não seja espaço.</p></section>
+<section class="card" id="ancoras"><h2>Âncoras</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>^</code></td><td>Início do texto ou da linha</td><td><code>^Olá</code></td><td><code>Olá tudo</code></td><td><code>Good Olá</code></td></tr><tr><td><code>$</code></td><td>Fim do texto ou da linha</td><td><code>mundo!$</code></td><td><code>Olá, mundo!</code></td><td><code>mundo! tchau</code></td></tr><tr><td><code>\b</code></td><td>Borda de palavra</td><td><code>\bcasa\b</code></td><td><code>minha casa</code></td><td><code>casamento</code></td></tr></tbody></table></div></section>
+<section class="card" id="conjuntos"><h2>Conjuntos e alternância</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>[...]</code></td><td>Qualquer um dos caracteres listados</td><td><code>cor[ea]ção</code></td><td><code>coração</code> <code>coreção</code></td><td><code>coraeção</code></td></tr><tr><td><code>[a-z]</code></td><td>Qualquer caractere do intervalo</td><td><code>[A-Za-z]</code></td><td><code>A</code> <code>x</code></td><td><code>5</code> <code>%</code></td></tr><tr><td><code>[^...]</code></td><td>Qualquer caractere fora da lista</td><td><code>[^0-9]</code></td><td><code>b</code> <code>@</code></td><td><code>1</code> <code>7</code></td></tr><tr><td><code>|</code></td><td>Ou lógico entre opções</td><td><code>sim|não</code></td><td><code>sim</code> <code>não</code></td><td><code>talvez</code></td></tr></tbody></table></div></section>
+<section class="card" id="quantificadores"><h2>Quantificadores</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>*</code></td><td>Zero ou mais vezes</td><td><code>ab*c</code></td><td><code>ac</code> <code>abc</code> <code>abbbbc</code></td><td><code>adc</code></td></tr><tr><td><code>+</code></td><td>Uma ou mais vezes</td><td><code>ab+c</code></td><td><code>abc</code> <code>abbbc</code></td><td><code>ac</code></td></tr><tr><td><code>?</code></td><td>Zero ou uma vez</td><td><code>colou?r</code></td><td><code>color</code> <code>colour</code></td><td><code>colouur</code></td></tr><tr><td><code>{n}</code></td><td>Exatamente n vezes</td><td><code>\d{4}</code></td><td><code>2025</code></td><td><code>123</code></td></tr><tr><td><code>{n,}</code></td><td>Pelo menos n vezes</td><td><code>a{2,}</code></td><td><code>aa</code> <code>aaaaa</code></td><td><code>a</code></td></tr><tr><td><code>{n,m}</code></td><td>Entre n e m vezes</td><td><code>\d{2,4}</code></td><td><code>12</code> <code>1234</code></td><td><code>1</code></td></tr></tbody></table></div><p class="tip">Os quantificadores são gulosos e pegam o máximo possível. Com ? depois (*? e +?) eles passam a pegar o mínimo.</p></section>
+<section class="card" id="grupos"><h2>Grupos</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>(...)</code></td><td>Agrupa e guarda o trecho</td><td><code>(ha){2}</code></td><td><code>haha</code></td><td><code>ha</code></td></tr><tr><td><code>(?:...)</code></td><td>Agrupa sem guardar</td><td><code>(?:http|https)://</code></td><td><code>http://</code> <code>https://</code></td><td><code>ftp://</code></td></tr><tr><td><code>\1</code></td><td>Repete o que o grupo 1 capturou</td><td><code>(.)\1</code></td><td><code>aa</code> <code>11</code></td><td><code>ab</code></td></tr></tbody></table></div></section>
+<section class="card" id="lookahead"><h2>Lookahead</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>(?=...)</code></td><td>Confere o que vem depois sem consumir</td><td><code>\d+(?= dias)</code></td><td><code>10 dias</code></td><td><code>10 horas</code></td></tr><tr><td><code>(?!...)</code></td><td>Garante que o que vem depois não é o padrão</td><td><code>foo(?!bar)</code></td><td><code>foo123</code></td><td><code>foobar</code></td></tr></tbody></table></div></section>
+<section class="card" id="escape"><h2>Escape</h2><div class="tbl"><table><thead><tr><th>Símbolo</th><th>O que faz</th><th>Exemplo</th><th>Casa</th><th>Não casa</th></tr></thead><tbody><tr><td><code>\</code></td><td>Faz o próximo caractere especial valer como texto</td><td><code>1\+1=2</code></td><td><code>1+1=2</code></td><td><code>11=2</code></td></tr></tbody></table></div><p class="tip">Precisam de escape os caracteres . ^ $ * + ? ( ) [ ] { } | e \.</p></section>
+<section class="card next">
+<h2>Continue</h2>
+<ul class="links">
+<li><a href="regex-prontos.html">Regex prontos para CPF, CEP, celular, email e data</a></li>
+<li><a href="regex-discord-automod.html">Como usar regex no AutoMod do Discord</a></li>
+<li><a href="sabores-de-regex.html">Diferenças de regex entre Python, JavaScript e Rust</a></li>
+</ul></section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>Guia aberto e mantido por <a href="https://github.com/Jose1777">José</a>. Todos os exemplos são conferidos por testes automáticos.</p>
+    <p><a href="https://github.com/Jose1777/Dominando-o-Regex">Ver no GitHub</a> · <a href="https://github.com/Jose1777/Dominando-o-Regex/issues">Sugerir correção</a></p>
+  </div>
+</footer>
+<script src="tester.js"></script>
+</body>
+</html>

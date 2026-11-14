@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regex no Python, JavaScript e Rust | Diferenças e exemplos</title>
+<meta name="description" content="Tabela com as diferenças de regex entre Python, JavaScript e Rust (AutoMod do Discord), testada na prática, com exemplos de uso no código.">
+<meta name="keywords" content="regex python, regex javascript, regex rust, diferença regex, re python, regexp javascript">
+<link rel="canonical" href="https://jose1777.github.io/Dominando-o-Regex/sabores-de-regex.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Dominando o Regex">
+<meta property="og:title" content="Regex no Python, JavaScript e Rust | Diferenças e exemplos">
+<meta property="og:description" content="Tabela com as diferenças de regex entre Python, JavaScript e Rust (AutoMod do Discord), testada na prática, com exemplos de uso no código.">
+<meta property="og:url" content="https://jose1777.github.io/Dominando-o-Regex/sabores-de-regex.html">
+<meta property="og:image" content="https://jose1777.github.io/Dominando-o-Regex/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Diferenças de regex entre Python, JavaScript e Rust", "description": "Tabela com as diferenças de regex entre Python, JavaScript e Rust (AutoMod do Discord), testada na prática, com exemplos de uso no código.", "inLanguage": "pt-BR", "url": "https://jose1777.github.io/Dominando-o-Regex/sabores-de-regex.html", "author": {"@type": "Person", "name": "José", "url": "https://github.com/Jose1777"}, "keywords": "regex python, regex javascript, regex rust, diferença regex, re python, regexp javascript"}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="brand-mark">.*</span> Dominando o Regex</a>
+    <nav><a href="index.html">Guia completo</a><a href="regex-prontos.html">Regex prontos</a><a href="regex-discord-automod.html">AutoMod do Discord</a><a href="sabores-de-regex.html" aria-current="page">Python, JS e Rust</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Diferenças de regex entre Python, JavaScript e Rust</h1>
+    <p class="lead">O que muda de uma linguagem para outra, testado na prática, para seu padrão não quebrar quando trocar de ambiente.</p>
+  </section>
+<section class="card">
+<h2>Por que o mesmo regex muda de linguagem para linguagem</h2>
+<p>Cada linguagem tem seu motor de regex, chamado de sabor. A base é a mesma, mas recursos avançados e o tratamento de acentos mudam. É por isso que um padrão testado em Python pode dar erro no JavaScript ou no AutoMod do Discord, que usa Rust.</p>
+</section>
+<section class="card">
+<h2>Tabela de diferenças</h2>
+<div class="tbl"><table><thead><tr><th>Recurso</th><th>Exemplo</th><th>Python</th><th>JavaScript</th><th>Rust e AutoMod</th></tr></thead><tbody><tr><td><code>\w</code> casa letra acentuada</td><td><code>ã</code></td><td>Sim</td><td>Não</td><td>Sim</td></tr><tr><td><code>\d</code> casa dígitos de outros alfabetos</td><td><code>٣</code></td><td>Sim</td><td>Não</td><td>Sim</td></tr><tr><td>Lookahead</td><td><code>a(?=b)</code></td><td>Sim</td><td>Sim</td><td>Erro</td></tr><tr><td>Lookbehind</td><td><code>(?&lt;=a)b</code></td><td>Sim</td><td>Sim</td><td>Erro</td></tr><tr><td>Referência a grupo</td><td><code>(.)\1</code></td><td>Sim</td><td>Sim</td><td>Erro</td></tr><tr><td>Flag no início do padrão</td><td><code>(?i)abc</code></td><td>Sim</td><td>Erro, use /abc/i</td><td>Sim</td></tr><tr><td>Grupo nomeado estilo Python</td><td><code>(?P&lt;nome&gt;a)</code></td><td>Sim</td><td>Erro</td><td>Sim</td></tr><tr><td>Grupo nomeado estilo JS</td><td><code>(?&lt;nome&gt;a)</code></td><td>Erro</td><td>Sim</td><td>Sim</td></tr><tr><td>Quantificador preguiçoso</td><td><code>a.*?b</code></td><td>Sim</td><td>Sim</td><td>Sim</td></tr><tr><td>Mínimo omitido</td><td><code>a{,3}</code></td><td>Sim</td><td>Vira texto</td><td>Erro</td></tr></tbody></table></div>
+<p class="tip">Conferido rodando cada exemplo em Python 3.13, Node.js 22 e na biblioteca regex do Rust 1.13.</p>
+</section>
+<section class="card">
+<h2>Como usar no código</h2>
+<h3>Python</h3>
+<pre><code>import re
+
+texto = &quot;CEP 50740-560&quot;
+achou = re.search(r&quot;\d{5}-?\d{3}&quot;, texto)
+print(achou.group())  # 50740-560</code></pre>
+<h3>JavaScript</h3>
+<pre><code>const texto = &quot;CEP 50740-560&quot;;
+const achou = texto.match(/\d{5}-?\d{3}/);
+console.log(achou[0]); // 50740-560</code></pre>
+<p class="tip">No Python, use string com r na frente (r"...") para a barra invertida não ser interpretada duas vezes.</p>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>Guia aberto e mantido por <a href="https://github.com/Jose1777">José</a>. Todos os exemplos são conferidos por testes automáticos.</p>
+    <p><a href="https://github.com/Jose1777/Dominando-o-Regex">Ver no GitHub</a> · <a href="https://github.com/Jose1777/Dominando-o-Regex/issues">Sugerir correção</a></p>
+  </div>
+</footer>
+<script src="tester.js"></script>
+</body>
+</html>
