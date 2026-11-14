@@ -11,6 +11,8 @@ Cada símbolo com o que ele faz, exemplos de padrão e o que casa e não casa.<b
 No fim tem padrões prontos e as diferenças entre Python, JavaScript e o AutoMod do Discord.<br/>
 Todos os exemplos são conferidos automaticamente por testes.
 
+**[Abrir o guia com testador online](https://jose1777.github.io/Dominando-o-Regex/)**
+
 </div>
 
 ---
